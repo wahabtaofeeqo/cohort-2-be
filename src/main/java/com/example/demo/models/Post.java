@@ -11,7 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,6 +22,8 @@ import org.hibernate.annotations.UpdateTimestamp;
  * @author taoltech
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "posts")
 public class Post implements Serializable {
     
@@ -38,4 +42,9 @@ public class Post implements Serializable {
     
     @CreationTimestamp
     private Date created_at;
+
+    public Post(String title, String desciption) {
+        this.title = title;
+        this.desciption = desciption;
+    }
 }
