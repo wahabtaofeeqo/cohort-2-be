@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  *
@@ -23,6 +24,12 @@ public class SecurityConfig {
         hs.cors(c -> c.disable());
         hs.csrf(c -> c.disable());
         
+        hs.authorizeHttpRequests(auth -> 
+                auth.requestMatchers("auth/**", "/").permitAll()
+                .anyRequest().authenticated()
+        );
+        
+        // hs.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         
         //
         return hs.build();
