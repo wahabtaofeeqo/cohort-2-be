@@ -4,6 +4,7 @@
  */
 package com.example.demo.config;
 
+import com.example.demo.security.TokenAuthenticationFilter;
 import jakarta.servlet.FilterChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     
     @Bean
+    TokenAuthenticationFilter tokenFilter() {
+        return new TokenAuthenticationFilter();
+    }
+    
+    @Bean
     public SecurityFilterChain filter(HttpSecurity hs) throws Exception {
         
         hs.cors(c -> c.disable());
@@ -29,7 +35,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
         );
         
-        // hs.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+        hs.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
         
         //
         return hs.build();
