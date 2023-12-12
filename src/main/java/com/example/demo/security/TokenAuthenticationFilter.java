@@ -62,6 +62,4 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         
         return token;
     }
-    
-    // ahahahahhahahdhy78388y3bhehbshbdhsbfhhsfbh83yr83y8rh 
 }

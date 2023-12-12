@@ -45,4 +45,18 @@ public class User implements Serializable {
     
     @CreationTimestamp
     private Date created_at;
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public User(String name, String email, String pw) {
+        this.name = name;
+        this.email = email;
+        this.password = pw;
+    }
 }
